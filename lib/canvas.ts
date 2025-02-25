@@ -1,6 +1,4 @@
-import * as fabric from "fabric";
-
-
+import { fabric } from "fabric";
 import { v4 as uuid4 } from "uuid";
 
 import {
@@ -16,31 +14,24 @@ import {
 import { defaultNavElement } from "@/constants";
 import { createSpecificShape } from "./shapes";
 
+// initialize fabric canvas
 export const initializeFabric = ({
   fabricRef,
   canvasRef,
 }: {
-  fabricRef: React.RefObject<fabric.Canvas | null>;
-  canvasRef: React.RefObject<HTMLCanvasElement | null>;
+  fabricRef: React.MutableRefObject<fabric.Canvas | null>;
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
 }) => {
-  if (!canvasRef.current) {
-    throw new Error("Canvas element not found");
-  }
-
-  // 💡 Si ya existe un canvas, límpialo antes de crear uno nuevo
-  if (fabricRef.current) {
-    fabricRef.current.dispose();
-    fabricRef.current = null;
-  }
-
+  // get canvas element
   const canvasElement = document.getElementById("canvas");
 
-  // 🚀 Ahora sí, creamos una nueva instancia sin errores
+  // create fabric canvas
   const canvas = new fabric.Canvas(canvasRef.current, {
     width: canvasElement?.clientWidth,
     height: canvasElement?.clientHeight,
   });
 
+  // set canvas reference to fabricRef so we can use it later anywhere outside canvas listener
   fabricRef.current = canvas;
 
   return canvas;
@@ -55,7 +46,7 @@ export const handleCanvasMouseDown = ({
   shapeRef,
 }: CanvasMouseDown) => {
   // get pointer coordinates
-  const pointer = canvas.getViewportPoint(options.e);
+  const pointer = canvas.getPointer(options.e);
 
   /**
    * get target object i.e., the object that is clicked
@@ -63,7 +54,7 @@ export const handleCanvasMouseDown = ({
    *
    * findTarget: http://fabricjs.com/docs/fabric.Canvas.html#findTarget
    */
-  const target = canvas.findTarget(options.e);
+  const target = canvas.findTarget(options.e, false);
 
   // set canvas drawing mode to false
   canvas.isDrawingMode = false;
@@ -72,9 +63,7 @@ export const handleCanvasMouseDown = ({
   if (selectedShapeRef.current === "freeform") {
     isDrawing.current = true;
     canvas.isDrawingMode = true;
-    if (canvas.freeDrawingBrush) {
-      canvas.freeDrawingBrush.width = 5;
-    }
+    canvas.freeDrawingBrush.width = 5;
     return;
   }
 

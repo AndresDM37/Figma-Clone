@@ -1,5 +1,5 @@
 "use client";
-import * as fabric from "fabric";
+import { fabric } from "fabric";
 
 import LeftSidebar from "@/components/LeftSideBar";
 import Live from "@/components/Live";
@@ -25,17 +25,15 @@ export default function Page() {
       fabricRef,
     });
 
-    const handleMouseDown = (options) => {
+    canvas.on("mouse:down", (options) => {
       handleCanvasMouseDown({
-      options,
-      canvas,
-      selectedShapeRef,
-      isDrawing,
-      shapeRef,
+        options,
+        canvas,
+        selectedShapeRef,
+        isDrawing,
+        shapeRef,
       });
-    };
-
-    canvas.on("mouse:down", handleMouseDown);
+    });
 
     const handleResizeEvent = () => {
       handleResize({ canvas: fabricRef.current });
@@ -46,7 +44,7 @@ export default function Page() {
     return () => {
       window.removeEventListener("resize", handleResizeEvent);
     };
-  }, [canvasRef]);
+  }, []);
 
   return (
     <main className="h-screen overflow-hidden">
@@ -54,7 +52,7 @@ export default function Page() {
 
       <section className="flex h-full flex-row">
         <LeftSidebar />
-        <Live canvasRef={canvasRef}/>
+        <Live canvasRef={canvasRef} />
         <RightSidebar />
       </section>
     </main>

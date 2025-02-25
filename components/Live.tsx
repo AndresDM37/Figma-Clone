@@ -85,7 +85,7 @@ const Live = ({ canvasRef }: Props) => {
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent) => {
-      event.preventDefault();
+      event.stopPropagation()
 
       const x = event.clientX - event.currentTarget.getBoundingClientRect().x;
       const y = event.clientX - event.currentTarget.getBoundingClientRect().y;
@@ -160,7 +160,7 @@ const Live = ({ canvasRef }: Props) => {
       onPointerUp={handlePointerUp}
       className="h-full w-full flex justify-center items-center text-center"
     >
-      <canvas ref={canvasRef} />
+      <canvas ref={canvasRef} className="w-full h-full"/>
 
       {reaction.map((r) => (
         <FlyingReaction

@@ -14,7 +14,6 @@
     "@liveblocks/react-ui": "^2.18.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "fabric": "^6.6.1",
     "jspdf": "^3.0.0",
     "lucide-react": "^0.475.0",
     "next": "15.1.6",
@@ -26,11 +25,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/fabric": "^5.3.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "fabric": "^5.3.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
