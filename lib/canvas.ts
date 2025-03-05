@@ -103,7 +103,7 @@ export const handleCanvasMouseDown = ({
 };
 
 // handle mouse move event on canvas to draw shapes with different dimensions
-export const handleCanvaseMouseMove = ({
+export const handleCanvasMouseMove = ({
   options,
   canvas,
   isDrawing,
@@ -190,13 +190,6 @@ export const handleCanvasMouseUp = ({
   shapeRef.current = null;
   activeObjectRef.current = null;
   selectedShapeRef.current = null;
-
-  // if canvas is not in drawing mode, set active element to default nav element after 700ms
-  if (!canvas.isDrawingMode) {
-    setTimeout(() => {
-      setActiveElement(defaultNavElement);
-    }, 700);
-  }
 };
 
 // update shape in storage when object is modified

@@ -1,4 +1,4 @@
-import { createClient } from "@liveblocks/client";
+import { createClient, LiveMap } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
 const client = createClient({
@@ -27,6 +27,10 @@ type UserMeta = {
 type RoomEvent = {
   // type: "NOTIFICATION",
   // ...
+}
+
+type Storage = {
+  canvasObjects: LiveMap<string, any>
 }
 
 // Optionally, when using Comments, ThreadMetadata represents metadata on

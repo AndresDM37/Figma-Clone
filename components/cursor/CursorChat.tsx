@@ -1,6 +1,5 @@
 import CursorSVG from "@/public/assets/CursorSVG";
 import { CursorChatProps, CursorMode } from "@/types/type";
-import React from "react";
 
 const CursorChat = ({
   cursor,
@@ -50,7 +49,7 @@ const CursorChat = ({
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               placeholder={
-                cursorState.previosMessage ? "" : "Escribe un mensaje"
+                cursorState.previousMessage ? "" : "Escribe un mensaje"
               }
               value={cursorState.message}
               maxLength={50}

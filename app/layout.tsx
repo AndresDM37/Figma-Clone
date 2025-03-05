@@ -11,6 +11,9 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   title: "Figma Clone",
+  icons: {
+    icon: "/favicon.ico",
+  },
   description:
     "Minimalista Figma Clone usando Fabric.js y Liveblocks para la colaboracion en tiempo real",
 };
